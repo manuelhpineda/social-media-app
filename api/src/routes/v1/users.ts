@@ -3,7 +3,9 @@ import {Router} from 'express';
 const routes = Router()
 
 routes.get('/', (req, res) => {
-    res.send('user')
+    res.send({
+        users: 'one'
+    })
 })
 
 export default routes
