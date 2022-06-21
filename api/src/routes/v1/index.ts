@@ -8,6 +8,6 @@ routes.get('/', (req, res) => {
     res.send('hello world')
 })
 
-routes.use(users)
+routes.use('/users', users)
 
 export default routes
