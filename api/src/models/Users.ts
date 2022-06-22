@@ -1,28 +1,31 @@
-import {Schema, model} from 'mongoose';
-
+import { Schema, model } from 'mongoose'
 
 interface User {
-    name: string;
-    username: string;
-    email: string;
-    password: string;
+  name: string
+  username: string
+  email: string
+  password: string
 }
 
 const UserSchema = new Schema<User>({
-    name: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
+  name: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 })
+
+const User = model('User', UserSchema)
+
+export default User

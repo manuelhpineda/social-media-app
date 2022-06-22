@@ -9,8 +9,15 @@ import routes from 'routes/v1'
 
 dotenv.config()
 
-const dbConnection = () => {
+const dbConnection = async (): Promise<void> => {
   mongoose.connect(`${process.env.MONGO_DB}`)
+  const connection = mongoose.connection
+  connection.once('open', () => {
+    console.log('Mongo database connection established successfully')
+  })
+  connection.on('error', (error) => {
+    console.log('Mongo databse connection failed: -> ', error)
+  })
 }
 
 const app: Express = express()
