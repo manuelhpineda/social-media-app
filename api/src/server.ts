@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 
 import { PORT } from 'config/contants'
 import swaggerDocs from './config/swagger'
-import { handleError } from 'middleware'
+import { handleError } from 'middlewares'
 import { RouteNotFoundError } from 'errors'
 import routes from 'routes/v1'
 
