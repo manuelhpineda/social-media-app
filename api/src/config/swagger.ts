@@ -1,6 +1,7 @@
-import { Application } from 'express'
+import { Application, Response, Request } from 'express'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+
 import { PORT } from './contants'
 
 const swaggerOptions = {
@@ -11,14 +12,36 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ['**/routes/v1/*.ts', '**/models/*.ts'],
+  apis: ['./src/routes/v1/*.ts', './src/models/*.ts', './src/validation/*.ts'],
+  components: {
+    securitySchemas: {
+      bearerAuth: {
+        type: 'http',
+        schema: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 }
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions)
 
 const swaggerDocs = (app: Application) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-  console.info(`Docs available at http://localhost:${PORT}/api-docs`)
+  //Swagger page
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+  //Docs in JSON format
+  app.get('/docs.json', (req: Request, res: Response) => {
+    res.setHeader('Content-type', 'application/json')
+    res.send(swaggerSpec)
+  })
+
+  console.info(`Docs available at http://localhost:${PORT}/docs`)
 }
 
 export default swaggerDocs

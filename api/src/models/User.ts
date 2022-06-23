@@ -12,7 +12,6 @@ interface IProfile {
 }
 
 interface IUser {
-  username: string
   email: string
   password: string
   passwordResetToken?: string
@@ -33,10 +32,6 @@ interface IUserModel extends Model<IUserDocument> {
 }
 
 const UserSchema = new Schema<IUserDocument>({
-  username: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
@@ -92,32 +87,3 @@ UserSchema.pre('save', async function (this, next) {
 const User = model<IUserDocument, IUserModel>('User', UserSchema)
 
 export default User
-
-/**
- * @swagger
- * components:
- *  schemas:
- *    Users:
- *      type: object
- *      required:
- *        - name
- *        - username
- *        - email
- *        - password
- *      properties:
- *         name:
- *          type: string
- *         username:
- *          type: string
- *         email:
- *          type: string
- *         password:
- *          type: string
- */
-
-/**
- * @swagger
- * tags:
- *  name: Users
- *  description: The users for the app
- */

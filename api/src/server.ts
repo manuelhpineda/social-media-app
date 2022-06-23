@@ -5,7 +5,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 
 import { PORT } from 'config/contants'
-import swaggerDocs from 'config/swagger'
+import swaggerDocs from './config/swagger'
 import { handleError } from 'middleware'
 import { RouteNotFoundError } from 'errors'
 import routes from 'routes/v1'

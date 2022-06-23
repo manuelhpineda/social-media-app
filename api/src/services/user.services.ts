@@ -11,3 +11,12 @@ export const createUser = async (userBody: any) => {
 export const getAllUsers = async () => {
   return User.find()
 }
+
+export const deleteUserById = async (id: string) => {
+  await User.deleteOne({ _id: id })
+  return id
+}
+
+export const deleteAllUsers = async () => {
+  await User.deleteMany()
+}

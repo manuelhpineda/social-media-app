@@ -1,11 +1,20 @@
 import { Router } from 'express'
 
 import * as userController from 'controllers/users.controller'
+import { createUserSchema } from 'validation/user.schema'
+import validateResources from '../../middleware/validateResources'
 
 const routes = Router()
 
 /**
- * @swagger
+ * @openapi
+ * tags:
+ *  name: Users
+ *  description: The users for the app
+ */
+
+/**
+ * @openapi
  * /users:
  *  get:
  *    tags: [Users]
@@ -17,7 +26,7 @@ const routes = Router()
 routes.get('/', userController.getUsers)
 
 /**
- * @swagger
+ * @openapi
  * /users/{id}:
  *  get:
  *    summary: Get user by id
@@ -35,39 +44,28 @@ routes.get('/:id', (req, res) => {
 })
 
 /**
- * @swagger
+ * @openapi
  * /users:
  *  post:
  *    tags:
  *    - Users
  *    description: Creates a new user.
- *    consumes:
- *    - application/json
- *    parameters:
- *    - in: body
- *      name: user
- *      description: The user to create.
- *      schema:
- *        type: object
- *        required:
- *          - name
- *          - username
- *          - email
- *          - password
- *        properties:
- *          name:
- *            type: string
- *          username:
- *            type: string
- *          email:
- *            type: string
- *          password:
- *            type: string
+ *    summary: Register a user
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Users'
  *    responses:
  *      200:
- *        description: ok
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/CreateUsersResponse'
  *
  */
-routes.post('/', userController.createUser)
+routes.post('/', validateResources(createUserSchema), userController.createUser)
 
 export default routes
