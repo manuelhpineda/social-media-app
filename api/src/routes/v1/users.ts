@@ -1,32 +1,41 @@
 import { Router } from 'express'
-import Users from '../../models/Users'
-import User from '../../models/Users'
+
+import * as userController from 'controllers/users.controller'
 
 const routes = Router()
 
 /**
- * @openapi
+ * @swagger
  * /users:
  *  get:
- *    tags:
- *    - Users
- *    description: Gets all Users
+ *    tags: [Users]
+ *    summary: Returns the list of users
  *    responses:
  *      200:
  *        description: returns all Users
  */
-routes.get('/', (req, res) => {
-  Users.find({}, (err: any, result: any) => {
-    if (err) {
-      console.log(err)
-    } else {
-      res.send(result)
-    }
-  })
+routes.get('/', userController.getUsers)
+
+/**
+ * @swagger
+ * /users/{id}:
+ *  get:
+ *    summary: Get user by id
+ *    tags: [Users]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The user id
+ */
+routes.get('/:id', (req, res) => {
+  res.send('user')
 })
 
 /**
- * @openapi
+ * @swagger
  * /users:
  *  post:
  *    tags:
@@ -59,11 +68,6 @@ routes.get('/', (req, res) => {
  *        description: ok
  *
  */
-routes.post('/', async (req, res) => {
-  const user = req.body
-  const newUser = new Users(user)
-  await newUser.save()
-  res.send(user)
-})
+routes.post('/', userController.createUser)
 
 export default routes
