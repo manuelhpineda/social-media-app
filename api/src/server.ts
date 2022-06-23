@@ -16,7 +16,7 @@ connection.once('open', () => {
   console.log('Mongo database connection established successfully')
 })
 connection.on('error', (error) => {
-  console.log('Mongo databse connection failed: -> ', error)
+  console.log('Mongo database connection failed: -> ', error)
 })
 
 const app: Express = express()
