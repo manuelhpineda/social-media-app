@@ -11,7 +11,7 @@ interface IProfile {
   picture?: string
 }
 
-export interface IUser {
+interface IUser {
   username: string
   email: string
   password: string
