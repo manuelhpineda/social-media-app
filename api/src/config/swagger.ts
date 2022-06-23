@@ -11,7 +11,7 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ['**/routes/v1/*.ts'],
+  apis: ['**/routes/v1/*.ts', '**/models/*.ts'],
 }
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions)

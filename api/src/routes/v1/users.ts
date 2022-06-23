@@ -2,38 +2,7 @@ import { Router } from 'express'
 
 import * as userController from 'controllers/users.controller'
 
-import Users from 'models/User'
-
 const routes = Router()
-
-/**
- * @swagger
- * components:
- *  schemas:
- *    Users:
- *      type: object
- *      required:
- *        - name
- *        - username
- *        - email
- *        - password
- *      properties:
- *         name:
- *          type: string
- *         username:
- *          type: string
- *         email:
- *          type: string
- *         password:
- *          type: string
- */
-
-/**
- * @swagger
- * tags:
- *  name: Users
- *  description: The users for the app
- */
 
 /**
  * @swagger
@@ -47,20 +16,9 @@ const routes = Router()
  */
 routes.get('/', userController.getUsers)
 
-// routes.get('/', (req, res) => {
-//   Users.find({}, (err: any, result: any) => {
-//     if (err) {
-//       console.log(err)
-//     } else {
-//       res.send(result)
-//     }
-//
-//   })
-// })
-
 /**
  * @swagger
- * /books/{id}:
+ * /users/{id}:
  *  get:
  *    summary: Get user by id
  *    tags: [Users]
@@ -73,13 +31,7 @@ routes.get('/', userController.getUsers)
  *        description: The user id
  */
 routes.get('/:id', (req, res) => {
-  Users.find({}, (err: any, result: any) => {
-    if (err) {
-      console.log(err)
-    } else {
-      res.send(result)
-    }
-  })
+  res.send('user')
 })
 
 /**
@@ -116,11 +68,6 @@ routes.get('/:id', (req, res) => {
  *        description: ok
  *
  */
-routes.post('/', async (req, res) => {
-  const user = req.body
-  const newUser = new Users(user)
-  await newUser.save()
-  res.send(user)
-})
+routes.post('/', userController.createUser)
 
 export default routes

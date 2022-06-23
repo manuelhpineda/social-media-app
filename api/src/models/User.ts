@@ -22,10 +22,14 @@ export interface IUser {
 
 interface IUserDocument extends IUser, Document {
   setPassword: (password: string) => Promise<void>
+  comparePassword: (password: string) => Promise<void>
 }
 
 interface IUserModel extends Model<IUserDocument> {
-  isEmailTaken: (email: string, excludeUserId: string) => Promise<IUserDocument>
+  isEmailTaken: (
+    email: string,
+    excludeUserId?: string
+  ) => Promise<IUserDocument>
 }
 
 const UserSchema = new Schema<IUserDocument>({
@@ -65,11 +69,55 @@ UserSchema.methods.setPassword = async function (password: string) {
   this.password = await bcrypt.hash(password, 10)
 }
 
-UserSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+UserSchema.methods.comparePassword = async function (password: string) {
+  return await bcrypt.compare(password, this.password)
+}
+
+UserSchema.statics.isEmailTaken = async function (
+  email: string,
+  excludeUserId?: string
+) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } })
   return !!user
 }
 
+UserSchema.pre('save', async function (this, next) {
+  const user = this
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 10)
+  }
+  next()
+})
+
 const User = model<IUserDocument, IUserModel>('User', UserSchema)
 
 export default User
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Users:
+ *      type: object
+ *      required:
+ *        - name
+ *        - username
+ *        - email
+ *        - password
+ *      properties:
+ *         name:
+ *          type: string
+ *         username:
+ *          type: string
+ *         email:
+ *          type: string
+ *         password:
+ *          type: string
+ */
+
+/**
+ * @swagger
+ * tags:
+ *  name: Users
+ *  description: The users for the app
+ */
