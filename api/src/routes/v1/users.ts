@@ -1,11 +1,16 @@
-import {Router} from 'express';
+import { Router } from 'express'
+import Users from '../../models/Users'
 
 const routes = Router()
 
 routes.get('/', (req, res) => {
-    res.send({
-        users: 'one'
-    })
+  Users.find({}, (err: any, result: any) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  })
 })
 
 export default routes

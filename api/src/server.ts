@@ -5,9 +5,10 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 
 import { PORT } from 'config/contants'
-import routes from 'routes/v1'
+import swaggerDocs from 'config/swagger'
 import { handleError } from 'middleware'
 import { RouteNotFoundError } from 'errors'
+import routes from 'routes/v1'
 
 mongoose.connect(`${process.env.MONGO_DB}`)
 const connection = mongoose.connection
@@ -24,6 +25,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+swaggerDocs(app)
 app.use(routes)
 app.use((req, _res, next) => next(new RouteNotFoundError(req.originalUrl)))
 app.use(handleError)
