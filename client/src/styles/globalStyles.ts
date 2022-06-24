@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+import { createGlobalStyle } from 'styled-components'
 
-
-*{
-    margin: 0;
+export default createGlobalStyle`
+  * {
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
-}
+  }
 
-body{
+  body {
     height: 100vh;
     font-family: 'Raleway', sans-serif;
     background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
@@ -15,5 +15,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    color:white;
-}
+    color: white;
+  }
+`

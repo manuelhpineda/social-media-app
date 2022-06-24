@@ -60,10 +60,6 @@ routes.get('/:id', (req, res) => {
   res.send('user')
 })
 
-/**
- *
- */
-
 routes.delete('/all', userController.deleteAllUsers)
 
 routes.delete('/:id', userController.deleteUser)
