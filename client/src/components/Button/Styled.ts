@@ -1,26 +1,28 @@
 import styled, { css } from 'styled-components'
-import { space, typography, layout } from 'styled-system'
+import { space, typography, layout, variant } from 'styled-system'
 
-export const StyledButton = styled.button`
-  position: relative;
-  display: inline-flex;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  vertical-align: middle;
-  font-size: 14px;
+export const StyledButton = styled('button')(
+{
+  backgroundImage: 'linear-gradient(to right, #14163c 0%, #03217b 79%)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2rem',
+  width: '65%',
+  height: '3rem',
+  border: 'none',
+  color: 'white',
+  borderRadius: '2rem',
+  cursor: 'pointer', 
+},
+  variant({
+    variants: {
+      primary:{
+        border: '1px solid red'
+      },
+      outline:{
+        border: '1px solid blue'
+      }
+    }
+  })
 
-  ${space}
-`
 
-// ${(props) => buttonVariants[props.variant]}
-
-const buttonVariants = {
-  primary: css`
-    border: 1px solid red;
-  `,
-  outline: css`
-    border: 1px solid blue;
-  `,
-}
+)
