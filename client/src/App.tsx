@@ -3,13 +3,13 @@ import {
   MainContainer,
   InputContainer,
   ButtonContainer,
-} from './components/Container'
-import { WelcomeText } from './components/Text'
-import { Input } from './components/Inputs'
-import Button from './components/Button'
+} from 'components/Container'
+import { WelcomeText } from 'components/Text'
+import { Input } from 'components/Inputs'
+import Button from 'components/Button'
 
 import { ThemeProvider } from 'styled-components'
-import { theme } from './theme'
+import { theme } from 'theme'
 import GlobalStyles from './styles/globalStyles'
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <MainContainer>
-          <Button>sdjfds sdfdsf dsff</Button>
+          <Button>test</Button>
           <WelcomeText>Welcome</WelcomeText>
           <InputContainer>
             <Input type="email" placeholder="Email Address" />
