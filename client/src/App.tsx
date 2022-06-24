@@ -5,7 +5,7 @@ import {
   ButtonContainer,
 } from './components/Container'
 import { WelcomeText } from './components/Text'
-import { Input } from './components/Inputs'
+import  Input  from './components/Input'
 import Button from './components/Button'
 
 import { ThemeProvider } from 'styled-components'
@@ -18,14 +18,13 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <MainContainer>
-          <Button>sdjfds</Button>
           <WelcomeText>Welcome</WelcomeText>
           <InputContainer>
             <Input type="email" placeholder="Email Address" />
             <Input type="password" placeholder="Password" />
           </InputContainer>
           <ButtonContainer>
-            <Button>Login</Button>
+            <Button variant="primary">Login</Button>
           </ButtonContainer>
         </MainContainer>
       </ThemeProvider>
