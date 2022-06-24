@@ -15,18 +15,18 @@ export const StyledButton = styled.button<Props>`
   vertical-align: middle;
   font-size: 14px;
 
+  ${(props) => buttonVariants[props.variant as keyof Specific]}
+
   ${space}
 `
 
-// ${(props) => buttonVariants[props.variant]}
+type Specific = Record<'primary' | 'outline', any>
 
-type Specific = Record<'primary' | 'outline', string>
-
-const buttonVariants = {
+const buttonVariants: Specific = {
   primary: css`
     border: 1px solid red;
   `,
   outline: css`
-    border: 1px solid blue;
+    border: 1px solid green;
   `,
 }

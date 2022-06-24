@@ -1,9 +1,13 @@
 import breakpoints from './breakpoints'
 import colors from './colors'
+import typography from './typography'
+import space from './space'
 
 export const theme = {
   colors,
   breakpoints,
+  ...typography,
+  space,
 }
 
 export const devices = {

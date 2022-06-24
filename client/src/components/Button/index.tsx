@@ -6,13 +6,12 @@ import { StyledButton } from './Styled'
 interface Props extends SpaceProps {
   className?: string
   children?: React.ReactNode
-  childrenElement?: JSX.Element
   variant?: string
   icon?: React.ReactNode | string
   disabled?: boolean
   isLoading?: boolean
   onClick?: () => void
-  as?: string
+  as?: any
 }
 
 const Button = ({ children, variant = 'primary', ...props }: Props) => {
