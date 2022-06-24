@@ -4,11 +4,26 @@ import { SpaceProps } from 'styled-system'
 import { StyledButton } from './Styled'
 
 interface Props extends SpaceProps {
-  children: JSX.Element[] | JSX.Element | string
+  className?: string
+  children?: React.ReactNode | string
+  variant?: string
+  icon?: React.ReactNode | string
+  disabled?: boolean
+  isLoading?: boolean
+  onClick?: () => void
+  as?: string
 }
 
-const Button = ({ children, ...props }: Props) => {
-  return <StyledButton {...props}>{children}</StyledButton>
+const Button: React.FC<Props> = ({
+  children,
+  variant = 'primary',
+  ...props
+}) => {
+  return (
+    <StyledButton variant={variant} {...props}>
+      {children}
+    </StyledButton>
+  )
 }
 
 export default Button

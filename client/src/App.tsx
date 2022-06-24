@@ -18,7 +18,7 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <MainContainer>
-          <Button>sdjfds</Button>
+          <Button>sdjfds sdfdsf dsff</Button>
           <WelcomeText>Welcome</WelcomeText>
           <InputContainer>
             <Input type="email" placeholder="Email Address" />
