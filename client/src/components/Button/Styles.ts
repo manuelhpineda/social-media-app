@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { space, typography, layout } from 'styled-system'
+import { TailSpin } from 'react-loader-spinner'
 
 interface Props {
   variant: string
@@ -14,8 +15,19 @@ export const StyledButton = styled.button<Props>`
   height: 50px;
   vertical-align: middle;
   font-size: 14px;
+  padding: 2px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 3px;
+  transition: all 0.1s;
+  appearance: none;
 
   ${(props) => buttonVariants[props.variant as keyof Specific]}
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
 
   ${space}
 `
@@ -30,3 +42,8 @@ const buttonVariants: Specific = {
     border: 1px solid green;
   `,
 }
+
+export const SpinnerContainer = styled.div`
+  position: absolute;
+  left: 3px;
+`

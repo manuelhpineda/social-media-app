@@ -1,12 +1,12 @@
 import React from 'react'
 import { SpaceProps } from 'styled-system'
 
-import { StyledButton } from './Styled'
+import { StyledButton } from './Styles'
 
 interface Props extends SpaceProps {
   className?: string
   children?: React.ReactNode
-  variant?: string
+  variant?: 'primary' | 'outline'
   icon?: React.ReactNode | string
   disabled?: boolean
   isLoading?: boolean
@@ -14,9 +14,20 @@ interface Props extends SpaceProps {
   as?: any
 }
 
-const Button = ({ children, variant = 'primary', ...props }: Props) => {
+const Button = ({
+  children,
+  variant = 'primary',
+  isLoading,
+  disabled,
+  ...props
+}: Props) => {
   return (
-    <StyledButton variant={variant} {...props}>
+    <StyledButton
+      variant={variant}
+      isLoading={isLoading}
+      disabled={isLoading || disabled}
+      {...props}
+    >
       {children}
     </StyledButton>
   )
