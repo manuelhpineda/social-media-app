@@ -12,7 +12,7 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ['./src/routes/v1/*.ts', './src/models/*.ts', './src/validation/*.ts'],
+  apis: ['./src/routes/v1/*.ts', './src/validations/*.ts'],
   components: {
     securitySchemas: {
       bearerAuth: {

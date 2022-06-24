@@ -8,47 +8,9 @@ const routes = Router()
 
 /**
  * @openapi
- * tags:
- *  name: Users
- *  description: The users for the app
- */
-
-/**
- * @openapi
- * /users:
- *  get:
- *    tags: [Users]
- *    summary: Returns the list of users
- *    responses:
- *      200:
- *        description: returns all Users
- */
-routes.get('/', userController.getUsers)
-
-/**
- * @openapi
- * /users/{id}:
- *  get:
- *    summary: Get user by id
- *    tags: [Users]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: The user id
- */
-routes.get('/:id', (req, res) => {
-  res.send('user')
-})
-
-/**
- * @openapi
  * /users:
  *  post:
- *    tags:
- *    - Users
+ *    tags: [User]
  *    description: Creates a new user.
  *    summary: Register a user
  *    requestBody:
@@ -67,5 +29,43 @@ routes.get('/:id', (req, res) => {
  *
  */
 routes.post('/', validateResources(createUserSchema), userController.createUser)
+
+/**
+ * @openapi
+ * /users:
+ *  get:
+ *    tags: [User]
+ *    summary: Returns the list of users
+ *    responses:
+ *      200:
+ *        description: returns all Users
+ */
+routes.get('/', userController.getUsers)
+
+/**
+ * @openapi
+ * /users/{id}:
+ *  get:
+ *    summary: Get user by id
+ *    tags: [User]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The user id
+ */
+routes.get('/:id', (req, res) => {
+  res.send('user')
+})
+
+/**
+ *
+ */
+
+routes.delete('/all', userController.deleteAllUsers)
+
+routes.delete('/:id', userController.deleteUser)
 
 export default routes

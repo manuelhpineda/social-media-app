@@ -3,9 +3,10 @@ import 'dotenv/config'
 import express, { Express } from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import morgan from 'morgan'
 
 import { PORT } from 'config/contants'
-import swaggerDocs from './config/swagger'
+import swaggerDocs from 'config/swagger'
 import { handleError } from 'middlewares'
 import { RouteNotFoundError } from 'errors'
 import routes from 'routes/v1'
@@ -24,6 +25,7 @@ const app: Express = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(morgan('tiny'))
 
 swaggerDocs(app)
 app.use(routes)

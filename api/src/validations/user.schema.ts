@@ -29,6 +29,13 @@ import { object, string, TypeOf } from 'zod'
  *          type: string
  */
 
+/**
+ * @openapi
+ * tags:
+ *  name: User
+ *  description: The users for the app
+ */
+
 export const createUserSchema = object({
   body: object({
     email: string({
