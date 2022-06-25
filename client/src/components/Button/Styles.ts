@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
-import { space, typography, layout } from 'styled-system'
+import { space, typography, layout, width } from 'styled-system'
 import { TailSpin } from 'react-loader-spinner'
 
 interface Props {
   variant: string
+  isFull?: boolean
 }
 
 export const StyledButton = styled.button<Props>`
@@ -21,6 +22,13 @@ export const StyledButton = styled.button<Props>`
   border-radius: 3px;
   transition: all 0.1s;
   appearance: none;
+  text-transform: capitalize;
+
+  ${(props) =>
+    props.isFull &&
+    css`
+      width: 100%;
+    `}
 
   ${(props) => buttonVariants[props.variant as keyof Specific]}
 
