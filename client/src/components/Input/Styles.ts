@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { space, typography } from 'styled-system'
+import styled, { css } from 'styled-components'
+import { space, typography, layout } from 'styled-system'
 
 import { theme } from 'theme'
 
@@ -7,12 +7,8 @@ interface Props {
   invalid?: boolean
 }
 
-export const StyledInput = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  ${space}
-  ${typography}
+const invalidStyles = css`
+  border: 1px solid ${theme.colors.danger};
 `
 
 export const InputElement = styled.input<Props>`
@@ -26,10 +22,17 @@ export const InputElement = styled.input<Props>`
   color: #151515;
   background: ${theme.colors.inputBackground};
   border-radius: 5px;
+  -moz-outline-radius: 5px;
 
   &:focus {
     outline: 1px solid #bdbdbd;
   }
+
+  ${(props) => props.invalid && invalidStyles}
+
+  ${space}
+  ${typography}
+  ${layout}
 `
 
 export const ErrorMessage = styled.span<Props>`

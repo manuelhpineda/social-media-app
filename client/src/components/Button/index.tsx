@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react'
 import { SpaceProps } from 'styled-system'
+import { UseFormProps } from 'react-hook-form'
 
 import { StyledButton } from './Styles'
 
-interface Props extends SpaceProps {
+interface Props extends SpaceProps, UseFormProps {
   className?: string
   children?: ReactNode
   variant?: 'primary' | 'outline'
@@ -13,6 +14,7 @@ interface Props extends SpaceProps {
   onClick?: () => void
   isFull?: boolean
   as?: any
+  type?: 'button' | 'submit'
 }
 
 const Button = ({
