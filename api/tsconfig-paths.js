@@ -1,4 +1,4 @@
-const tsconfigPaths = require('tsconfig-paths')
+const tsconfigPaths = require('./tsconfig-paths')
 const tsConfig = require('./tsconfig.json')
 
 tsconfigPaths.register({

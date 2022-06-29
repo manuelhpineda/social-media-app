@@ -3,7 +3,7 @@ import { space, typography, layout } from 'styled-system'
 import { TailSpin } from 'react-loader-spinner'
 
 interface Props {
-  variant: string
+  variant?: string
 }
 
 export const StyledButton = styled.button<Props>`

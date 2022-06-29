@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import { space } from "styled-system"
+import {theme} from '../../theme'
 
 export const MainContainer = styled.div`
     display: flex;
@@ -6,13 +8,14 @@ export const MainContainer = styled.div`
     flex-direction: column;
     height: 80vh;
     width: 30vw;
-    background: rgba(255, 255, 255, 0.15);
+    background: ${theme.background.light};
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(8.5px);
     border-radius: 10px;
     color: #ffffff;
     text-transform:uppercase;
     letter-spacing: 0.4rem;
+    ${space}
     
 `
 

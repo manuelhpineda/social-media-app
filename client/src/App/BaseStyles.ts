@@ -11,10 +11,17 @@ export default createGlobalStyle`
   }
 
   body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
     font-family: ${theme.fonts.poppins};
     font-weight: 400;
     line-height: 1.75;
+    background-image: ${theme.background.lightGradient};
+    background-repeat: no-repeat;
   }
 
   ul {
