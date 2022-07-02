@@ -9,10 +9,11 @@ const Project = () => {
     <>
       <Routes>
         <Route path={'/'}>
-          <Route path={'/'} element={<HomePage />} />
+          <Route index element={<HomePage />} />
         </Route>
         <Route path={'/enter'}>
-          <Route path={'/enter'} element={<Register />} />
+          <Route path={'login'} element={<Register />} />
+          <Route path={'register'} element={<Register />} />
         </Route>
       </Routes>
     </>

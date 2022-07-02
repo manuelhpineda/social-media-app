@@ -12,7 +12,12 @@ type FormData = {
 }
 
 const schema = zod.object({
-  email: zod.string().email({ message: 'invalid email' }),
+  email: zod
+    .string({ required_error: 'Email is required' })
+    .email({ message: 'invalid email' }),
+  password: zod
+    .string()
+    .min(6, { message: 'password must be more that 6 characters long' }),
 })
 
 const Register = () => {
@@ -39,6 +44,7 @@ const Register = () => {
             placeholder={'Password'}
             {...register('password')}
           />
+          {errors.password?.message && <p>{errors.password?.message}</p>}
           <Button mt={5} isFull type={'submit'}>
             Create Account
           </Button>
