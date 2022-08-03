@@ -31,7 +31,7 @@ interface IUserModel extends Model<IUserDocument> {
   ) => Promise<IUserDocument>
 }
 
-const UserSchema = new Schema<IUserDocument>({
+const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
